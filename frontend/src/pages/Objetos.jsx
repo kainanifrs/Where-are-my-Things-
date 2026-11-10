@@ -1,6 +1,26 @@
 import "./Objetos.css";
+import { useState } from "react";
 
 function Objetos() {
+    const [pesquisa, setPesquisa] = useState("");
+    const objetosFiltrados = [
+        {
+            nome: "Garrafa azul",
+            tipo: "Encontrado",
+            categoria: "Acessórios",
+            local: "Biblioteca",
+            data: "09/11/2026",
+        },
+        {
+            nome: "Estojo preto",
+            tipo: "Perdido",
+            categoria: "Material escolar",
+            local: "Sala 12",
+            data: "08/11/2026",
+        },
+    ].filter((objeto) =>
+        objeto.nome.toLowerCase().includes(pesquisa.toLowerCase())
+    );
     return (
         <main className="pagina-objetos">
             <h1>Objetos perdidos e encontrados</h1>
@@ -9,7 +29,10 @@ function Objetos() {
                 aquilo que você está procurando.
             </p>
             <div className="filtros-objetos">
-                <input type="text" placeholder="Pesquisar objeto..."/>
+                <input type="text"
+                       placeholder="Pesquisar objeto..."
+                       value={pesquisa}
+                       onChange={(evento) => setPesquisa(evento.target.value)}/>
                 <select defaultValue="">
                     <option value="" disabled>Tipo de Registro</option>
                     <option value="PERDIDO">Perdido</option>
