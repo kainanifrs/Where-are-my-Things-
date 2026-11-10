@@ -1,0 +1,71 @@
+.pagina-objetos {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 25px;
+}
+
+.pagina-objetos h1 {
+    color: #1e5b9f;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.descricao-objetos {
+    color: #6b7280;
+    margin-bottom: 35px;
+}
+
+.filtros-objetos {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.filtros-objetos input,
+.filtros-objetos select {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.filtros-objetos input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.lista-objetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.card-objeto {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-objeto h2 {
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.card-objeto p {
+    color: #6b7280;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .pagina-objetos {
+        padding: 30px 18px;
+    }
+
+    .pagina-objetos h1 {
+        font-size: 26px;
+    }
+}
