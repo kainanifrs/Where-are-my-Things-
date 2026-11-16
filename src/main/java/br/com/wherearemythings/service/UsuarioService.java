@@ -41,7 +41,7 @@ public class UsuarioService {
         Usuario usuario = buscarPorEmail(email);
 
         if (usuario == null || !Boolean.TRUE.equals(usuario.getAtivo())) {
-            return false;
+            throw new IllegalStateException("Usuário inativo");
         }
 
         return passwordEncoder.matches(senha, usuario.getSenha());
