@@ -6,10 +6,11 @@ function Login() {
     const [mensagem, setMensagem] = useState('');
 
     async function handleSubmit(e) {
+        console.log("A função handleSubmit foi executada!");
         e.preventDefault();
 
         try {
-            const resposta = await fetch("http://localhost:5000/api/auth/login", {
+            const resposta = await fetch("http://localhost:8080/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -31,7 +32,7 @@ function Login() {
         <div>
             <h1>Where are My Things?</h1>
             <h2>Fazer Login</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">E-mail:</label>
                     <input type="email" id="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -41,6 +42,7 @@ function Login() {
                     <input type="password" id="senha" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button type="submit">Entrar</button>
+                <p>{mensagem}</p>
             </form>
         </div>
     );
