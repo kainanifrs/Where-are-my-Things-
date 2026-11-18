@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [mensagem, setMensagem] = useState('');
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -23,6 +26,14 @@ function Login() {
             const dados = await resposta.json();
 
             setMensagem(dados.mensagem);
+
+            if (dados.sucesso) {
+                sessionStorage.setItem("idUsuario", dados.idUsuario);
+                sessionStorage.setItem("nomeUsuario", dados.nome);
+
+                navigate('/objetos');
+            }
+
         } catch (erro) {
             setMensagem("Não foi possível conectar ao servidor");
         }
