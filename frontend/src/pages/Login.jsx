@@ -6,7 +6,6 @@ function Login() {
     const [mensagem, setMensagem] = useState('');
 
     async function handleSubmit(e) {
-        console.log("A função handleSubmit foi executada!");
         e.preventDefault();
 
         try {
@@ -17,7 +16,7 @@ function Login() {
                 },
                 body: JSON.stringify({
                     email: email,
-                    senha: senha
+                    senha: password
                 })
             });
 
