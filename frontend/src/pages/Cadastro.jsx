@@ -1,0 +1,82 @@
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
+
+function Cadastro() {
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [senha, setSenha] = useState('');
+    const [confirmarSenha, setConfirmarSenha] = useState('');
+    const [mensagem, setMensagem] = useState('');
+    const navigate = useNavigate();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        if (senha !== confirmarSenha) {
+            setMensagem("As senhas não correspondem!");
+            return;
+        }
+
+        try {
+            const resposta = await fetch("http://localhost:8080/api/usuarios", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nome: nome,
+                    email: email,
+                    telefone: telefone,
+                    senha: senha,
+                })
+            });
+
+            if (!resposta.ok) {
+                setMensagem("Não foi possível realizar o cadastro. Verifique os dados.");
+                return;
+            }
+
+            setMensagem("Cadastro realizado com sucesso!");
+
+            setTimeout(() => {
+                navigate('/login');
+            }, 1500);
+        } catch(erro) {
+            setMensagem("Não foi possível conectar ao servidor.");
+        }
+    }
+
+    return (
+        <div>
+            <h1>Where are My Things?</h1>
+            <h2>Criar Conta</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="nome">Nome completo:</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome" value={nome} onChange={(e) => setNome(e.target.value)} required/>
+                </div>
+                <div>
+                    <label htmlFor="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                </div>
+                <div>
+                    <label htmlFor="telefone">Telefone</label>
+                    <input type="tel" id="telefone" placeholder="Digite seu telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
+                </div>
+                <div>
+                    <label htmlFor="senha">Senha:</label>
+                    <input type="password" id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
+                </div>
+                <div>
+                    <label htmlFor="confirmarSenha">Confirmar senha:</label>
+                    <input type="password" id="confirmarSenha" placeholder="Digite a senha novamente" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required/>
+                </div>
+                <button type="submit">Criar Conta</button>
+                <p>{mensagem}</p>
+            </form>
+        </div>
+    );
+}
+
+export default Cadastro;

@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Objetos from "./pages/Objetos";
 import "./App.css";
 import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/objetos" element={<Objetos />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
       </BrowserRouter>
   );

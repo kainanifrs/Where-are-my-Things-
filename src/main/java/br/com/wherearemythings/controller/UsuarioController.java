@@ -3,6 +3,8 @@ package br.com.wherearemythings.controller;
 import br.com.wherearemythings.entity.Usuario;
 import br.com.wherearemythings.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,6 +31,13 @@ public class UsuarioController {
 
     @PostMapping
     public Usuario salvar(@RequestBody Usuario usuario) {
+        if (usuario.getIdUsuario() != null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não é permitido informar um ID no cadastro.");
+        }
+
+        usuario.setTipoUsuario("USUARIO");
+        usuario.setAtivo(true);
+
         return usuarioService.salvar(usuario);
     }
 
