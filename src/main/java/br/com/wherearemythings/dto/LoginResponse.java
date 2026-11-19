@@ -5,12 +5,14 @@ public class LoginResponse {
     private String mensagem;
     private Long idUsuario;
     private String nome;
+    private String tipoUsuario;
 
-    public  LoginResponse(boolean sucesso, String mensagem, Long idUsuario, String nome) {
+    public  LoginResponse(boolean sucesso, String mensagem, Long idUsuario, String nome, String tipoUsuario) {
         this.sucesso = sucesso;
         this.mensagem = mensagem;
         this.idUsuario = idUsuario;
         this.nome = nome;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public boolean isSucesso() {
@@ -28,4 +30,6 @@ public class LoginResponse {
     public String getNome() {
         return nome;
     }
+
+    public String getTipoUsuario(){return tipoUsuario;}
 }

@@ -30,6 +30,7 @@ function Login() {
             if (dados.sucesso) {
                 sessionStorage.setItem("idUsuario", dados.idUsuario);
                 sessionStorage.setItem("nomeUsuario", dados.nome);
+                sessionStorage.setItem("tipoUsuario", dados.tipoUsuario);
 
                 navigate('/objetos');
             }

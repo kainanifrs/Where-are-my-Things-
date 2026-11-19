@@ -10,6 +10,7 @@ function Objetos() {
     const [registros, setRegistros] = useState([]);
     const [tipoSelecionado, setTipoSelecionado] = useState("");
     const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
+    const [localSelecionado, setLocalSelecionado] = useState("");
     const [carregando, setCarregando] = useState(true);
 
 
@@ -106,6 +107,10 @@ function Objetos() {
                 ) : (
                     objetosFiltrados.map((objeto) => (
                         <article className="card-objeto" key={objeto.idObjeto}>
+                            {registros
+                                .filter((registro) => String(registro.objeto.idObjeto) === String(objeto.idObjeto))
+                                .map((registro) => (<p key={registro.idRegistro}><strong>Local: </strong>{registro.localOcorrencia}</p>))
+                            }
                             <h2>{objeto.nome}</h2>
                             <p><strong>Categoria:</strong> {objeto.categoria}</p>
                             <p><strong>Cor:</strong> {objeto.cor}</p>
