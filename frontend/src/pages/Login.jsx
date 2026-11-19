@@ -40,23 +40,31 @@ function Login() {
         }
     }
     return (
-        <div>
-            <h1>Where are My Things?</h1>
-            <h2>Fazer Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">E-mail:</label>
-                    <input type="email" id="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <main className="pagina-login">
+            <div className="login-card">
+                <div className="login-logo">
+                    <h1>Where are My Things?</h1>
+                    <p>Lost & Found</p>
                 </div>
-                <div>
-                    <label htmlFor="senha">Senha:</label>
-                    <input type="password" id="senha" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <button type="submit">Entrar</button>
-                <p>{mensagem}</p>
-                <p>Ainda não tem uma conta? <Link to="/cadastro">Cadastre-se</Link></p>
-            </form>
-        </div>
+                <h2>Bem-vindo de volta!</h2>
+                <p className="login-subtitulo">Entre na sua conta para continuar.</p>
+                <form onSubmit={handleSubmit}>
+                    <div className="login-campo">
+                        <label htmlFor="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                    </div>
+                    <div className="login-campo">
+                        <label htmlFor="senha">Senha</label>
+                        <input type="password" id="senha" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                    </div>
+
+                    <button type="submit" className="login-botao">Entrar</button>
+
+                    <p className="login-mensagem">{mensagem}</p>
+                    <p className="login-cadastro">Ainda não tem uma conta?{" "}<Link to="/cadastro">Cadastre-se</Link></p>
+                </form>
+            </div>
+        </main>
     );
 }
 

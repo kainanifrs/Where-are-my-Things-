@@ -48,35 +48,45 @@ function Cadastro() {
     }
 
     return (
-        <div>
-            <h1>Where are My Things?</h1>
-            <h2>Criar Conta</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="nome">Nome completo:</label>
-                    <input type="text" id="nome" placeholder="Digite seu nome" value={nome} onChange={(e) => setNome(e.target.value)} required/>
+        <main className="pagina-cadastro">
+            <div className="cadastro-card">
+                <div className="cadastro-logo">
+                    <h1>Where are My Things?</h1>
+                    <p>Lost & Found</p>
                 </div>
-                <div>
-                    <label htmlFor="email">E-mail:</label>
-                    <input type="email" id="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                </div>
-                <div>
-                    <label htmlFor="telefone">Telefone</label>
-                    <input type="tel" id="telefone" placeholder="Digite seu telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
-                </div>
-                <div>
-                    <label htmlFor="senha">Senha:</label>
-                    <input type="password" id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
-                </div>
-                <div>
-                    <label htmlFor="confirmarSenha">Confirmar senha:</label>
-                    <input type="password" id="confirmarSenha" placeholder="Digite a senha novamente" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required/>
-                </div>
-                <button type="submit">Criar Conta</button>
-                <p>{mensagem}</p>
-                <p>Já possui uma conta?<Link to="/login">Faça Login</Link></p>
-            </form>
-        </div>
+
+                <h2>Crie sua conta</h2>
+                <p className="cadastro-subtitulo">Encontre ou anuncie objetos perdidos.</p>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="cadastro-campo">
+                        <label htmlFor="nome">Nome completo</label>
+                        <input type="text" id="nome" placeholder="Digite seu nome" value={nome} onChange={(e) => setNome(e.target.value)} required/>
+                    </div>
+                    <div className="cadastro-campo">
+                        <label htmlFor="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Digite seu E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                    </div>
+                    <div className="cadastro-campo">
+                        <label htmlFor="telefone">Telefone</label>
+                        <input type="tel" id="telefone" placeholder="Digite seu telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
+                    </div>
+                    <div className="cadastro-campo">
+                        <label htmlFor="senha">Senha</label>
+                        <input type="password" id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
+                    </div>
+                    <div className="cadastro-campo">
+                        <label htmlFor="confirmarSenha">Confirmar senha</label>
+                        <input type="password" id="confirmarSenha" placeholder="Digite a senha novamente" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required/>
+                    </div>
+
+                    <button type="submit" className="cadastro-botao">Criar conta</button>
+
+                    <p className="cadastro-mensagem">{mensagem}</p>
+                    <p className="cadastro-login">Já possui uma conta?<Link to="/login">Faça Login</Link></p>
+                </form>
+            </div>
+        </main>
     );
 }
 
