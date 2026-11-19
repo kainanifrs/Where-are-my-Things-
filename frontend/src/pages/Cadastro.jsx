@@ -1,5 +1,5 @@
 import { useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Cadastro() {
     const [nome, setNome] = useState('');
@@ -74,6 +74,7 @@ function Cadastro() {
                 </div>
                 <button type="submit">Criar Conta</button>
                 <p>{mensagem}</p>
+                <p>Já possui uma conta?<Link to="/login">Faça Login</Link></p>
             </form>
         </div>
     );

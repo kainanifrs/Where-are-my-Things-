@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -54,6 +54,7 @@ function Login() {
                 </div>
                 <button type="submit">Entrar</button>
                 <p>{mensagem}</p>
+                <p>Ainda não tem uma conta? <Link to="/cadastro">Cadastre-se</Link></p>
             </form>
         </div>
     );
