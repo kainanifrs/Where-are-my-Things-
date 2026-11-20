@@ -1,18 +1,73 @@
+.cabecalho-objetos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 25px 45px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #a855f7);
+    color: white;
+    border-radius: 14px;
+    margin-bottom: 35px;
+}
+
+.cabecalho-objetos h2 {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.cabecalho-objetos p {
+    color: #eee7ff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.usuario-logado {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.usuario-logado span {
+    color: white;
+    font-weight: 500;
+}
+
+.usuario-logado button {
+    background-color: white;
+    color: #764ba2;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.usuario-logado button:hover {
+    background-color: #eee7ff;
+}
+
 .pagina-objetos {
     max-width: 1100px;
     margin: 0 auto;
     padding: 50px 25px;
 }
 
-.pagina-objetos h1 {
-    color: #1e5b9f;
+.conteudo-objetos h1 {
+    color: #4c3575;
     font-size: 32px;
     margin-bottom: 12px;
 }
 
 .descricao-objetos {
-    color: #6b7280;
-    margin-bottom: 35px;
+    color: #718096;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 .filtros-objetos {
@@ -65,7 +120,7 @@
         padding: 30px 18px;
     }
 
-    .pagina-objetos h1 {
+    .conteudo-objetos h1 {
         font-size: 26px;
     }
 }

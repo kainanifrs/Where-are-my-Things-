@@ -74,9 +74,18 @@ function Objetos() {
 
     return (
         <main className="pagina-objetos">
-            <h2>Olá {nomeUsuario}!</h2>
-            <button onClick={sair}>Sair</button>
-            <h1>Objetos perdidos e encontrados</h1>
+            <header className="cabecalho-objetos">
+                <div>
+                    <h2>Where are my Things</h2>
+                    <p>Achados e Perdidos</p>
+                </div>
+                <div className="usuario-logado">
+                    <span>Olá, {nomeUsuario}!</span>
+                    <button onClick={sair}>Sair</button>
+                </div>
+            </header>
+            <div className="conteudo-objetos">
+                <h1>Objetos perdidos e encontrados</h1>
             <p className="descricao-objetos">
                 Confira os objetos registrados na plataforma e encontre
                 aquilo que você está procurando.
@@ -119,6 +128,7 @@ function Objetos() {
                         </article>
                     ))
                 )}
+                </div>
             </div>
         </main>
     );
