@@ -18,11 +18,20 @@ public class UsuarioService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
+    private boolean senhaValida(String senha) {
+        return senha != null && senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,16}$");
+    }
+
     public Usuario salvar(Usuario usuario) {
-        if (usuario.getIdUsuario() == null) {
-            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-        }
-        return usuarioRepository.save(usuario);
+       if (usuario.getIdUsuario() == null) {
+           if (!senhaValida(usuario.getSenha())) {
+               throw new IllegalArgumentException("A senha deve ter entre 8 e 16 caracteres, incluindo letra maiúscula, minúscula, número e caractere especial.");
+           }
+
+           usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+       }
+
+       return usuarioRepository.save(usuario);
     }
 
     public List<Usuario> listarTodos() {

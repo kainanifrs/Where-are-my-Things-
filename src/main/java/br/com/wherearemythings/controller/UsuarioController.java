@@ -38,7 +38,11 @@ public class UsuarioController {
         usuario.setTipoUsuario("USUARIO");
         usuario.setAtivo(true);
 
-        return usuarioService.salvar(usuario);
+        try {
+            return usuarioService.salvar(usuario);
+        } catch (IllegalArgumentException erro) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

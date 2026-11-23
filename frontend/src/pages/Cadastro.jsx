@@ -8,10 +8,19 @@ function Cadastro() {
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [mensagem, setMensagem] = useState('');
+    const [mostrarSenha, setMostrarSenha] = useState(false);
+    const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,16}$/;
+
+        if (!senhaValida.test(senha)) {
+            setMensagem("A senha deve ter entre 8 e 16 caracteres, incluindo pelo menos 1 letra maiúscula, 1 minúscula e 1 caractere especial.");
+            return;
+        }
 
         if (senha !== confirmarSenha) {
             setMensagem("As senhas não correspondem!");
@@ -73,11 +82,32 @@ function Cadastro() {
                     </div>
                     <div className="cadastro-campo">
                         <label htmlFor="senha">Senha</label>
-                        <input type="password" id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
+
+                        <div className="cadastro-senha-container">
+                            <input type={mostrarSenha ? "text" : "password"} id="senha" placeholder="Crie uma senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
+                            <button type="button"
+                                    className="cadastro-olho"
+                                    onClick={() => setMostrarSenha(!mostrarSenha)}
+                                    aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}>
+                                    {mostrarSenha ? "🙈" : "👁️"}
+                            </button>
+                        </div>
                     </div>
                     <div className="cadastro-campo">
                         <label htmlFor="confirmarSenha">Confirmar senha</label>
-                        <input type="password" id="confirmarSenha" placeholder="Digite a senha novamente" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} required/>
+
+                        <div className="cadastro-senha-container">
+                            <input type={mostrarConfirmarSenha ? "text" : "password"}
+                                   id="confirmarSenha" placeholder="Digite a senha novamente"
+                                   value={confirmarSenha}
+                                   onChange={(e) => setConfirmarSenha(e.target.value)} required/>
+                            <button type="button"
+                                    className="cadastro-olho"
+                                    onClick={() => setMostrarConfirmarSenha(!mostrarConfirmarSenha)}
+                                    aria-label={mostrarConfirmarSenha ? "Ocultar senha" : "Mostrar senha"}>
+                                    {mostrarConfirmarSenha ? "🙈" : "👁️"}
+                            </button>
+                        </div>
                     </div>
 
                     <button type="submit" className="cadastro-botao">Criar conta</button>

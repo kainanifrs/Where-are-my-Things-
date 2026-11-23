@@ -5,6 +5,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [mensagem, setMensagem] = useState('');
+    const [mostrarSenha, setMostrarSenha] = useState(false);
 
     const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ function Login() {
             <div className="login-card">
                 <div className="login-logo">
                     <h1>Where are My Things?</h1>
-                    <p>Lost & Found</p>
+                    <p>Achados e Perdidos</p>
                 </div>
                 <h2>Bem-vindo de volta!</h2>
                 <p className="login-subtitulo">Entre na sua conta para continuar.</p>
@@ -55,7 +56,16 @@ function Login() {
                     </div>
                     <div className="login-campo">
                         <label htmlFor="senha">Senha</label>
-                        <input type="password" id="senha" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+
+                        <div className="login-senha-container">
+                            <input type={mostrarSenha ? "text" : "password"} id="senha" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                            <button type="button"
+                                    className="login-olho"
+                                    onClick={() => setMostrarSenha(!mostrarSenha)}
+                                    aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}>
+                                    {mostrarSenha ? "🙈" : "👁️"}
+                            </button>
+                        </div>
                     </div>
 
                     <button type="submit" className="login-botao">Entrar</button>
