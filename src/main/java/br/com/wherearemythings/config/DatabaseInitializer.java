@@ -15,7 +15,7 @@ public class DatabaseInitializer {
     public static void initialize() {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String username = "postgres";
-        String password = System.getenv("DB_PASSWORD");
+        String password = "postgres";
 
         if (password == null || password.isBlank()) {
             throw new IllegalStateException(
