@@ -20,10 +20,10 @@ function RecuperarSenha() {
                 }
                 );
 
-            const dados = await resposta.json();
+            //const dados = await resposta.json();
 
             if (resposta.ok) {
-                setMensagem(dados.mensagem);
+                setMensagem("Se o e-mail estiver cadastrado, você receberá um link de recuperação.");
             } else {
                 setMensagem("Não foi possível processar a solicitação.");
             }
