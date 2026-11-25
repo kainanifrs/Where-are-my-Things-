@@ -68,6 +68,10 @@ function Login() {
                         </div>
                     </div>
 
+                    <div className="login-esqueci-senha">
+                        <Link to="/recuperar-senha">Esqueci minha senha</Link>
+                    </div>
+
                     <button type="submit" className="login-botao">Entrar</button>
 
                     <p className="login-mensagem">{mensagem}</p>

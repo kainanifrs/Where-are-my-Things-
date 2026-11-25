@@ -219,6 +219,24 @@ section button:hover {
   }
 }
 
+.login-esqueci-senha {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -8px;
+  margin-bottom: 15px;
+}
+
+.login-esqueci-senha a {
+  color: #198754;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-esqueci-senha a:hover {
+  text-decoration: underline;
+}
+
 /*Página de Cadastro*/
 
 .pagina-cadastro {
@@ -344,4 +362,62 @@ section button:hover {
   .cadastro-logo h1 {
     font-size: 23px;
   }
+}
+
+.validacao-sucesso {
+  display: block;
+  color: #198754;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.validacao-erro {
+  display: block;
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.cadastro-requisitos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.cadastro-senha-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cadastro-senha-container input {
+  width: 100%;
+  padding-right: 45px;
+}
+
+.cadastro-olho {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.cadastro-olho:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.cadastro-olho:focus-visible {
+  outline: 2px solid #198754;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
