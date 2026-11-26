@@ -45,7 +45,12 @@ public class AuthController {
 
             var usuario = usuarioService.buscarPorEmail(request.getEmail());
 
-            LoginResponse resposta = new LoginResponse(true, "Login realizado com sucesso!", usuario.getIdUsuario(), usuario.getNome(), usuario.getTipoUsuario());
+            LoginResponse resposta = new LoginResponse(
+                    true,
+                    "Login realizado com sucesso!",
+                    usuario.getIdUsuario(),
+                    usuario.getNome(),
+                    usuario.getTipoUsuario());
 
             return ResponseEntity.ok(resposta);
 
@@ -57,14 +62,17 @@ public class AuthController {
     }
 
     @PostMapping("/recuperar-senha")
-    public ResponseEntity<Map<String, String>> recuperarSenha(@RequestBody RecuperarSenhaRequest request) {
+    public ResponseEntity<Map<String, String>> recuperarSenha(
+            @RequestBody RecuperarSenhaRequest request) {
+
         recuperacaoSenhaService.solicitarRecuperacao(request.getEmail(), urlFrontend);
 
         return ResponseEntity.ok(Map.of("mensagem", "Se o e-mail estiver cadastrado, você receberá um link de recuperação."));
     }
 
     @PostMapping("/redefinir-senha")
-    public ResponseEntity<Map<String, String>> redefinirSenha(@RequestBody RedefinirSenhaRequest request) {
+    public ResponseEntity<Map<String, String>> redefinirSenha(
+            @RequestBody RedefinirSenhaRequest request) {
 
         try {
             recuperacaoSenhaService.redefinirSenha(request.getToken(), request.getNovaSenha());
@@ -74,5 +82,12 @@ public class AuthController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(Map.of("mensagem", e.getMessage()));
         }
+    }
+
+    @GetMapping("/verificar-token")
+    public ResponseEntity<Map<String, String>> verificarToken(@RequestParam String token) {
+        String resultado = recuperacaoSenhaService.verificarToken(token);
+
+        return ResponseEntity.ok(Map.of("status", resultado));
     }
 }

@@ -5,7 +5,6 @@ import br.com.wherearemythings.entity.TokenRecuperacaoSenha;
 import br.com.wherearemythings.repository.UsuarioRepository;
 import br.com.wherearemythings.repository.TokenRecuperacaoSenhaRepository;
 
-import org.antlr.v4.runtime.Token;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +73,30 @@ public class RecuperacaoSenhaService {
         emailService.enviarEmailRecuperacao(usuario.getEmail(), link);
     }
 
+    public String verificarToken(String token) {
+        if (token == null || token.isBlank()) {
+            return "INVALIDO";
+        }
+
+        String tokenHash = gerarHash(token);
+
+        TokenRecuperacaoSenha registro = tokenRepository.findByTokenHash(tokenHash).orElse(null);
+
+        if (registro == null) {
+            return "INVALIDO";
+        }
+
+        if (registro.isUtilizado()) {
+            return "UTILIZADO";
+        }
+
+        if (!registro.getDataExpiracao().isAfter(LocalDateTime.now())) {
+            return "EXPIRADO";
+        }
+
+        return "VALIDO";
+    }
+
     public void redefinirSenha(String token, String novaSenha) {
         if (!senhaValida(novaSenha)) {
             throw new IllegalArgumentException("A senha deve ter entre 8 e 16 caracteres, incluindo letra maiúcula, minúscula, número e caractere especial.");
@@ -83,7 +106,7 @@ public class RecuperacaoSenhaService {
 
         TokenRecuperacaoSenha registro = tokenRepository.findByTokenHash(tokenHash).orElseThrow(() -> new IllegalArgumentException("Link de recuperação inválido."));
 
-        if (registro.isUtilizado() || registro.getDataExpiracao().isBefore(LocalDateTime.now())) {
+        if (registro.isUtilizado() || !registro.getDataExpiracao().isAfter(LocalDateTime.now())) {
             throw new IllegalArgumentException("Link de recuperação expirado ou já utilizado.");
         }
 

@@ -5,6 +5,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro"
 import RecuperarSenha from "./pages/RecuperarSenha"
+import RedefinirSenha from "./pages/RedefinirSenha";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+          <Route path="/redefinir-senha" element={<RedefinirSenha />} />
         </Routes>
       </BrowserRouter>
   );

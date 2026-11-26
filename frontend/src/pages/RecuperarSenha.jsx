@@ -18,7 +18,7 @@ function RecuperarSenha() {
                     },
                     body: JSON.stringify({ email })
                 }
-                );
+            );
 
             //const dados = await resposta.json();
 

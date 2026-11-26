@@ -169,6 +169,46 @@ section button:hover {
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
 }
 
+.login-senha-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.login-senha-container input {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 45px;
+}
+
+.login-olho {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.login-olho:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.login-olho:focus-visible {
+  outline: 2px solid #198754;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .login-botao {
   width: 100%;
   padding: 14px;
