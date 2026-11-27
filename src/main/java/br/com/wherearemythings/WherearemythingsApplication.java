@@ -7,7 +7,7 @@ import br.com.wherearemythings.config.DatabaseInitializer;
 @SpringBootApplication
 public class WherearemythingsApplication {
 
-	public static void main(String[] args) {
+	static void main(String[] args) {
 		DatabaseInitializer.initialize();
 		SpringApplication.run(WherearemythingsApplication.class, args);
 	}

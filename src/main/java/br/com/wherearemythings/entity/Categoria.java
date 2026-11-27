@@ -1,20 +1,24 @@
 package br.com.wherearemythings.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "categoria")
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_registro")
+    @Column(name = "id_categoria")
     private Long idCategoria;
 
-    @Column(name = "nome", nullable = false, length = 50)
+    @Column(name = "nome", nullable = false, unique = true, length = 50)
     private String nome;
 
-    @Column(name = "ativo", nullable = false)
-    private boolean ativo = true;
+    @Column(name = "ativa",nullable = false)
+    private boolean ativa = true;
+
+    @Column(name = "data_cadastro", insertable = false, updatable = false)
+    private LocalDateTime dataCadastro;
 
     public Long getIdCategoria() {
         return idCategoria;
@@ -32,11 +36,19 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public boolean isAtiva() {
+        return ativa;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = true;
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }
